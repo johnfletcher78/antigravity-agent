@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Sparkles } from 'lucide-react';
+import { Send, Bot, User, Sparkles, Ear, EarOff } from 'lucide-react';
 import VoiceInput from './VoiceInput';
+import WakeWordDetector from './WakeWordDetector';
 
 interface Message {
     role: 'user' | 'assistant';
@@ -15,6 +16,7 @@ export default function ChatInterface() {
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [wakeWordEnabled, setWakeWordEnabled] = useState(false);
 
     // Configuration
     const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
@@ -173,17 +175,41 @@ export default function ChatInterface() {
         handleSend(text);
     };
 
+    const handleWakeWordDetected = () => {
+        console.log('Wake word detected! Activating NAT...');
+        // Play a confirmation sound or visual feedback
+        const greeting = "Hey Bull! I'm here. What do you need?";
+        handleSend(greeting);
+    };
+
     return (
         <div className="flex flex-col h-[calc(100vh-100px)] w-full max-w-4xl mx-auto rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden shadow-2xl">
+            {/* Wake Word Detector */}
+            <WakeWordDetector
+                isActive={wakeWordEnabled}
+                onWakeWordDetected={handleWakeWordDetected}
+            />
 
             <div className="p-4 border-b border-white/10 bg-white/5 flex items-center gap-3">
                 <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500">
                     <Sparkles className="w-5 h-5 text-white" />
                 </div>
-                <div>
+                <div className="flex-1">
                     <h2 className="text-white font-semibold">NAT (Not A Terminator)</h2>
                     <p className="text-xs text-gray-400">Bull's Personal Marketing AI</p>
                 </div>
+
+                {/* Wake Word Toggle */}
+                <button
+                    onClick={() => setWakeWordEnabled(!wakeWordEnabled)}
+                    className={`p-2 rounded-lg transition-all ${wakeWordEnabled
+                            ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50'
+                            : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
+                        }`}
+                    title={wakeWordEnabled ? 'Disable "Hey NAT" wake word' : 'Enable "Hey NAT" wake word'}
+                >
+                    {wakeWordEnabled ? <Ear className="w-5 h-5" /> : <EarOff className="w-5 h-5" />}
+                </button>
             </div>
 
             <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
