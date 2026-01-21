@@ -1,33 +1,55 @@
 import requests
 
-ELEVENLABS_VOICE_ID = "rfkTsdZrVWEVhDycUYn9"
+# Using Rachel voice - warm, friendly, and professional
+# You can change this to other voices like:
+# - "21m00Tcm4TlvDq8ikWAM" (Rachel - warm female)
+# - "EXAVITQu4vr4xnSDxMaL" (Bella - soft female) 
+# - "pNInz6obpgDQGcFmaJgB" (Adam - deep male)
+ELEVENLABS_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"  # Rachel - natural and conversational
 
 class VoiceService:
     def __init__(self, api_key: str):
         self.api_key = api_key
         self.url = f"https://api.elevenlabs.io/v1/text-to-speech/{ELEVENLABS_VOICE_ID}/stream"
 
+    def _preprocess_text_for_speech(self, text: str) -> str:
+        """
+        Preprocess text to ensure proper pronunciation.
+        Replaces acronyms and special terms with phonetic versions.
+        """
+        # Replace "NAT" with "Nat" so it's pronounced as a name, not spelled out
+        # Use word boundaries to avoid replacing "NAT" in the middle of words
+        import re
+        
+        # Replace standalone "NAT" (case-insensitive) with "Nat"
+        text = re.sub(r'\bNAT\b', 'Nat', text, flags=re.IGNORECASE)
+        
+        # Also handle "NAT's" -> "Nat's"
+        text = re.sub(r'\bNAT\'s\b', "Nat's", text, flags=re.IGNORECASE)
+        
+        return text
+
     async def generate_audio_stream(self, text: str):
+        # Preprocess the text for better pronunciation
+        processed_text = self._preprocess_text_for_speech(text)
+        
         headers = {
             "xi-api-key": self.api_key,
             "Content-Type": "application/json"
         }
         data = {
-            "text": text,
-            "model_id": "eleven_multilingual_v2",
+            "text": processed_text,  # Use preprocessed text
+            "model_id": "eleven_turbo_v2_5",  # Faster, more natural model
             "voice_settings": {
-                "stability": 0.5,
-                "similarity_boost": 0.5
-            }
+                "stability": 0.65,  # Higher stability for consistent voice
+                "similarity_boost": 0.75,  # Higher similarity for clearer voice
+                "style": 0.5,  # Balanced style
+                "use_speaker_boost": True  # Enhanced clarity
+            },
+            "optimize_streaming_latency": 3  # Optimize for low latency
         }
         
-        # We use requests here (blocking) but in a real async app we might want httpx.
-        # For simplicity in this `async def`, we can stream the response content.
-        # Ideally, we should use `httpx` for async streaming, but let's stick to what we have or add httpx if needed.
-        # Since we are inside FastAPI async path, blocking I/O is bad. 
-        # But `requests` with `stream=True` returns an iterator.
-        
-        # Let's switch to a generator that yields bytes
+        # Stream the audio response
         response = requests.post(self.url, json=data, headers=headers, stream=True)
         
         if response.status_code != 200:
@@ -37,3 +59,4 @@ class VoiceService:
         for chunk in response.iter_content(chunk_size=1024):
             if chunk:
                 yield chunk
+

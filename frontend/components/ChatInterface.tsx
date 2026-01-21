@@ -11,7 +11,7 @@ interface Message {
 
 export default function ChatInterface() {
     const [messages, setMessages] = useState<Message[]>([
-        { role: 'assistant', content: "Hello! I'm your Antigravity Marketing Agent. How can I help you optimize your campaigns today?" }
+        { role: 'assistant', content: "Hey Bull! I'm NAT (Not A Terminator), your personal marketing AI. Ready to crush some campaigns together? What's on your mind?" }
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -181,8 +181,8 @@ export default function ChatInterface() {
                     <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                    <h2 className="text-white font-semibold">Antigravity Agent</h2>
-                    <p className="text-xs text-gray-400">Marketing Intelligence Active</p>
+                    <h2 className="text-white font-semibold">NAT (Not A Terminator)</h2>
+                    <p className="text-xs text-gray-400">Bull's Personal Marketing AI</p>
                 </div>
             </div>
 

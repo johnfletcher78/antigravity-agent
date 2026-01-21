@@ -1,7 +1,5 @@
 fastapi
 uvicorn
 python-dotenv
-langchain-google-genai
+aiohttp
 requests
-google-generativeai
-google-ads
