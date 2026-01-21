@@ -39,3 +39,8 @@ yarn-error.log*
 
 # Runtime data
 backend/db/memory.json
+
+# Google OAuth credentials
+backend/credentials.json
+backend/token.json
+
