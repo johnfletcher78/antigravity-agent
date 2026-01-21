@@ -1,11 +1,11 @@
 import requests
 
-# Using Rachel voice - warm, friendly, and professional
+# Using Bella voice - soft, natural, and conversational
 # You can change this to other voices like:
 # - "21m00Tcm4TlvDq8ikWAM" (Rachel - warm female)
 # - "EXAVITQu4vr4xnSDxMaL" (Bella - soft female) 
 # - "pNInz6obpgDQGcFmaJgB" (Adam - deep male)
-ELEVENLABS_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"  # Rachel - natural and conversational
+ELEVENLABS_VOICE_ID = "EXAVITQu4vr4xnSDxMaL"  # Bella - natural and soothing
 
 class VoiceService:
     def __init__(self, api_key: str):
@@ -41,9 +41,9 @@ class VoiceService:
             "text": processed_text,  # Use preprocessed text
             "model_id": "eleven_turbo_v2_5",  # Faster, more natural model
             "voice_settings": {
-                "stability": 0.65,  # Higher stability for consistent voice
-                "similarity_boost": 0.75,  # Higher similarity for clearer voice
-                "style": 0.5,  # Balanced style
+                "stability": 0.50,  # Lower for more expressive, natural speech
+                "similarity_boost": 0.80,  # Higher for clearer pronunciation
+                "style": 0.65,  # More personality and expressiveness
                 "use_speaker_boost": True  # Enhanced clarity
             },
             "optimize_streaming_latency": 3  # Optimize for low latency
