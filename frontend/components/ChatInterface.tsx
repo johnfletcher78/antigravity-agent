@@ -12,7 +12,7 @@ interface Message {
 
 export default function ChatInterface() {
     const [messages, setMessages] = useState<Message[]>([
-        { role: 'assistant', content: "Hey Bull! I'm NAT (Not A Terminator), your personal marketing AI. Ready to crush some campaigns together? What's on your mind?" }
+        { role: 'assistant', content: "Hey Bull! I'm NAT. What can I help you with?" }
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -203,8 +203,8 @@ export default function ChatInterface() {
                 <button
                     onClick={() => setWakeWordEnabled(!wakeWordEnabled)}
                     className={`p-2 rounded-lg transition-all ${wakeWordEnabled
-                            ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50'
-                            : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
+                        ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50'
+                        : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
                         }`}
                     title={wakeWordEnabled ? 'Disable "Hey NAT" wake word' : 'Enable "Hey NAT" wake word'}
                 >
