@@ -1,0 +1,64 @@
+{
+  "projects": [
+    {
+      "id": "f03778cb-e5a3-4e31-975c-9cb1c75d4a54",
+      "name": "Common John Brewing Company",
+      "domain": "",
+      "description": "",
+      "industry": "",
+      "created_at": "2026-01-20T23:17:29.835437",
+      "updated_at": "2026-01-20T23:17:29.835466",
+      "metadata": {
+        "goals": [],
+        "notes": [],
+        "contacts": []
+      },
+      "primary_objective": ""
+    },
+    {
+      "id": "eb11c13a-99cd-4b19-8eda-c777d55291a2",
+      "name": "Common John Brewing Company",
+      "domain": "https://www.commonjohnbc.com/",
+      "description": "Locally owned brewery in Manchester, TN, serving handcrafted beers and a menu in a relaxed atmosphere.",
+      "industry": "",
+      "created_at": "2026-01-20T23:19:04.194417",
+      "updated_at": "2026-01-20T23:19:04.194434",
+      "metadata": {
+        "goals": [],
+        "notes": [],
+        "contacts": []
+      },
+      "primary_objective": ""
+    },
+    {
+      "id": "c05b9e02-6952-4286-a832-f2a297e71bbe",
+      "name": "The Huffaker Group",
+      "domain": "https://www.thehuffakergroup.com/",
+      "description": "A Real Estate company based in Middle Tennessee",
+      "industry": "Real Estate",
+      "created_at": "2026-01-20T23:21:40.857199",
+      "updated_at": "2026-01-21T00:14:00.000000",
+      "metadata": {
+        "goals": [],
+        "notes": [],
+        "contacts": []
+      },
+      "primary_objective": "Autonomous SEO, SEM, and Digital Visibility Optimization\n\nPRIMARY MISSION: Continuously optimize and defend The Huffaker Group's brand, domain, and digital presence across:\n- Organic search (SEO)\n- Answer engines and AI search (AEO, GEO)\n- Paid search and advertising platforms (SEM)\n- Social discovery and amplification channels\n\nCORE RESPONSIBILITIES:\n\n1. ORGANIC SEARCH OPTIMIZATION\n   - Build topical authority and entity dominance\n   - Improve rankings, CTR, and SERP feature ownership\n   - Capture featured snippets, AI Overviews, People Also Ask, voice results\n   - Ensure proper technical SEO, internal linking, structured data\n\n2. PAID SEARCH PERFORMANCE\n   - Manage and refine Google Ads campaigns\n   - Discover, expand, and prune keywords and negative keywords\n   - Improve Quality Scores, ad relevance, landing page alignment\n   - Reduce wasted spend while increasing ROI and conversion efficiency\n\n3. COMPETITIVE INTELLIGENCE\n   - Track competitor rankings, content, messaging, paid activity\n   - Identify strategic gaps and weaknesses in competitor coverage\n   - Recommend counter-strategies to maintain dominance\n\n4. MODERN SEARCH BEHAVIOR\n   - Treat entities, not keywords, as foundation of ranking\n   - Optimize for AI-generated answers and generative search\n   - Ensure brand clarity across knowledge panels and entity graphs\n   - Align SEO, paid media, and social signals into unified visibility strategy\n\n5. MULTI-CHANNEL VISIBILITY\n   - Optimize content for social discovery and engagement\n   - Align social content with search demand and brand positioning\n   - Reinforce authority across owned, earned, and paid channels\n\nEXECUTION PRINCIPLES:\n- Use real data from connected tools and APIs\n- Never fabricate metrics, rankings, or performance data\n- Analyze, prioritize, decide, and recommend high-impact actions\n- Think in terms of: user intent, search behavior, competitive dynamics, conversion impact\n- Break complex tasks into steps, execute sequentially, report outcomes"
+    },
+    {
+      "id": "fc7da3ef-005d-4257-aedd-a97ca14af3aa",
+      "name": "The Huffaker Group",
+      "domain": "thehuffakergroup.com",
+      "description": "A Real Estate Company located and operating out of Middle Tennessee.",
+      "industry": "",
+      "created_at": "2026-01-20T23:23:22.936604",
+      "updated_at": "2026-01-20T23:23:22.936629",
+      "metadata": {
+        "goals": [],
+        "notes": [],
+        "contacts": []
+      },
+      "primary_objective": ""
+    }
+  ]
+}

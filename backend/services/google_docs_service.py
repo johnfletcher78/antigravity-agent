@@ -1,53 +1,25 @@
 import os
 import json
-from google.oauth2.credentials import Credentials
-from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
+from services.google_oauth_service import GoogleOAuthService
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-# If modifying these scopes, delete the file token.json.
-SCOPES = [
-    'https://www.googleapis.com/auth/documents',
-    'https://www.googleapis.com/auth/drive.file'
-]
-
 class GoogleDocsService:
-    def __init__(self):
-        self.creds = None
+    def __init__(self, credentials_file='credentials.json', token_file='token.json'):
+        self.credentials_file = credentials_file
+        self.token_file = token_file
         self.docs_service = None
         self.drive_service = None
         self._authenticate()
     
     def _authenticate(self):
-        """Authenticate with Google APIs"""
-        # The file token.json stores the user's access and refresh tokens
-        token_path = 'token.json'
-        
-        if os.path.exists(token_path):
-            self.creds = Credentials.from_authorized_user_file(token_path, SCOPES)
-        
-        # If there are no (valid) credentials available, let the user log in.
-        if not self.creds or not self.creds.valid:
-            if self.creds and self.creds.expired and self.creds.refresh_token:
-                self.creds.refresh(Request())
-            else:
-                # Need credentials.json from Google Cloud Console
-                if not os.path.exists('credentials.json'):
-                    raise FileNotFoundError(
-                        "credentials.json not found. Please download it from Google Cloud Console."
-                    )
-                flow = InstalledAppFlow.from_client_secrets_file(
-                    'credentials.json', SCOPES)
-                self.creds = flow.run_local_server(port=0)
-            
-            # Save the credentials for the next run
-            with open(token_path, 'w') as token:
-                token.write(self.creds.to_json())
+        """Authenticate with Google APIs using unified OAuth"""
+        oauth = GoogleOAuthService(self.credentials_file, self.token_file)
+        creds = oauth.get_credentials()
         
         # Build the services
-        self.docs_service = build('docs', 'v1', credentials=self.creds)
-        self.drive_service = build('drive', 'v3', credentials=self.creds)
+        self.docs_service = build('docs', 'v1', credentials=creds)
+        self.drive_service = build('drive', 'v3', credentials=creds)
     
     def create_document(self, title: str, content: str = "") -> dict:
         """
